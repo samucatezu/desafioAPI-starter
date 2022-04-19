@@ -1,10 +1,8 @@
 package com.gft.desafioapistarter.model;
 
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Data
 @Entity
@@ -25,6 +23,5 @@ public class Starters {
 
     @Column
     private String Email;
-
 
 }

@@ -1,6 +1,6 @@
 package com.gft.desafioapistarter.model;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 
