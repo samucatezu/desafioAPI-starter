@@ -1,12 +1,14 @@
 package com.gft.desafioapistarter.model;
 
 import lombok.Data;
+import org.springframework.http.HttpStatus;
 
 import javax.persistence.*;
 
 @Data
 @Entity
 public class Starters {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
