@@ -4,6 +4,8 @@ package com.gft.desafioapistarter.controller;
 import com.gft.desafioapistarter.model.Categoria;
 import com.gft.desafioapistarter.model.Starters;
 import com.gft.desafioapistarter.repository.CategoriaRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,37 +17,31 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/categoria")
+@Api("CRUD endpoint de Categorias ")
 public class CategoriaController {
 
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-//    @GetMapping
-//    public List<Categoria> listar() {
-//        return categoriaRepository.findAll();
-//    }
-//
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public Categoria adicionar(@RequestBody Categoria categoria) {
-//        return categoriaRepository.save(categoria);
-//    }
 
-    @GetMapping("/categoria")
+    @GetMapping
+    @ApiOperation("Retorna uma lista com todas as Categorias cadastrados")
     public ResponseEntity<List<Categoria>> listarTodos() {
         List<Categoria> categoria = new ArrayList<>();
         categoria = categoriaRepository.findAll();
         return new ResponseEntity<>(categoria, HttpStatus.OK);
     }
 
-    @PostMapping("/categoria")
+    @PostMapping
+    @ApiOperation("Adicionar Categorias para a lista")
     public ResponseEntity<Categoria> adicionar(@RequestBody Categoria categoria) {
         categoriaRepository.save(categoria);
         return new ResponseEntity<>(categoria, HttpStatus.CREATED);
     }
 
-    @GetMapping(path = "/categoria/{id}")
+    @GetMapping(path = "{id}")
+    @ApiOperation("Retorna uma Categoria cadastrada pelo id")
     public ResponseEntity<Optional<Categoria>> getById(@PathVariable Long id) {
         Optional<Categoria> categoria;
         try {
@@ -56,7 +52,8 @@ public class CategoriaController {
         }
     }
 
-    @DeleteMapping(path = "/categoria/{id}")
+    @DeleteMapping(path = "{id}")
+    @ApiOperation("Deleta uma Categoria cadastrada pelo id")
     public ResponseEntity<Optional<Categoria>> deletarById(@PathVariable Long id) {
         try {
             categoriaRepository.deleteById(id);
@@ -66,7 +63,8 @@ public class CategoriaController {
         }
     }
 
-    @PutMapping(value = "/categoria/{id}")
+    @PutMapping(value = "{id}")
+    @ApiOperation("Edita uma Categoria cadastrada pelo id")
     public ResponseEntity<Categoria> updateById(@PathVariable Long id, @RequestBody Categoria newCategoria) {
         return categoriaRepository.findById(id)
                 .map(categoria -> {

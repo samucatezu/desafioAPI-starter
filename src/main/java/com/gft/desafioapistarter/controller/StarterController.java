@@ -3,6 +3,8 @@ package com.gft.desafioapistarter.controller;
 import com.gft.desafioapistarter.model.Starters;
 import com.gft.desafioapistarter.repository.StartersRepository;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,26 +16,30 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/starters")
+@Api("CRUD endpoint de starters ")
 public class StarterController {
 
     @Autowired
     private StartersRepository startersRepository;
 
-    @GetMapping("/starters")
+    @GetMapping
+    @ApiOperation("Retorna uma lista com todos os Starters cadastrados")
     public ResponseEntity<List<Starters>> listarTodos() {
         List<Starters> starters = new ArrayList<>();
         starters = startersRepository.findAll();
         return new ResponseEntity<>(starters, HttpStatus.OK);
     }
 
-    @PostMapping("/starters")
+    @PostMapping
+    @ApiOperation("Adicionar Starters para a lista")
     public ResponseEntity<Starters> adicionar(@RequestBody Starters starters) {
         startersRepository.save(starters);
         return new ResponseEntity<>(starters, HttpStatus.CREATED);
     }
 
-    @GetMapping(path = "/starters/{id}")
+    @GetMapping(path = "{id}")
+    @ApiOperation("Retorna um Starter cadastrado pelo id")
     public ResponseEntity<Optional<Starters>> getById(@PathVariable Long id) {
         Optional<Starters> starters;
         try {
@@ -44,7 +50,8 @@ public class StarterController {
         }
     }
 
-    @DeleteMapping(path = "/starters/{id}")
+    @DeleteMapping(path = "{id}")
+    @ApiOperation("Deleta um Starter cadastrado pelo id")
     public ResponseEntity<Optional<Starters>> deletarById(@PathVariable Long id) {
         try {
             startersRepository.deleteById(id);
@@ -54,7 +61,8 @@ public class StarterController {
         }
     }
 
-    @PutMapping(value = "/starters/{id}")
+    @PutMapping(value = "id}")
+    @ApiOperation("Edita um Starter cadastrado pelo id")
     public ResponseEntity<Starters> updateById(@PathVariable Long id, @RequestBody Starters newStarter) {
         return startersRepository.findById(id)
                 .map(starters -> {

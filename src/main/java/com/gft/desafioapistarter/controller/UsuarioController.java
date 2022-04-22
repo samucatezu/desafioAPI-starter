@@ -6,6 +6,7 @@ import com.gft.desafioapistarter.exception.SenhaInvalidaException;
 import com.gft.desafioapistarter.model.Usuario;
 import com.gft.desafioapistarter.security.jwt.JwtService;
 import com.gft.desafioapistarter.service.UsuarioServiceImpl;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +28,7 @@ public class UsuarioController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation("Criar usuario")
     public Usuario salvar( @RequestBody @Valid Usuario usuario ){
         String senhaCriptografada = passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(senhaCriptografada);
@@ -34,6 +36,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/auth")
+    @ApiOperation("Autenticar usuario. PS: Usuarios com nivel de acesso de admin, possuem livre acesso de rotas")
     public TokenDTO autenticar(@RequestBody CredenciaisDTO credenciais){
         try{
             Usuario usuario = Usuario.builder()
