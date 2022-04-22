@@ -46,7 +46,7 @@ public class SwaggerConfig {
     private Contact contact(){
         return new Contact("Samuel Almeida"
                 , "http://github.com/samucatezu",
-                "slba@gft.com");
+                "barbosasamuel24@gmail.com");
     }
 
     public ApiKey apiKey(){

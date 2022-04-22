@@ -5,9 +5,13 @@ import com.gft.desafioapistarter.dto.TokenDTO;
 import com.gft.desafioapistarter.exception.SenhaInvalidaException;
 import com.gft.desafioapistarter.model.Usuario;
 import com.gft.desafioapistarter.security.jwt.JwtService;
+import com.gft.desafioapistarter.service.EmailSenderService;
 import com.gft.desafioapistarter.service.UsuarioServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,6 +26,8 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class UsuarioController {
 
+//    @Autowired
+//    private EmailSenderService senderService;
     private final UsuarioServiceImpl usuarioService;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -48,6 +54,8 @@ public class UsuarioController {
         } catch (UsernameNotFoundException | SenhaInvalidaException e ){
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
         }
+
+
     }
 
 }
