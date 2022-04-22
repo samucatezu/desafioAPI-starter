@@ -8,12 +8,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.StringJoiner;
 
 @Service
 public class UsuarioServiceImpl implements UserDetailsService {
@@ -25,15 +22,15 @@ public class UsuarioServiceImpl implements UserDetailsService {
     private UsuarioRepository repository;
 
     @Transactional
-    public Usuario salvar(Usuario usuario){
+    public Usuario salvar(Usuario usuario) {
         return repository.save(usuario);
     }
 
-    public UserDetails autenticar( Usuario usuario ){
+    public UserDetails autenticar(Usuario usuario) {
         UserDetails user = loadUserByUsername(usuario.getLogin());
-        boolean senhasBatem = encoder.matches( usuario.getSenha(), user.getPassword() );
+        boolean senhasBatem = encoder.matches(usuario.getSenha(), user.getPassword());
 
-        if(senhasBatem){
+        if (senhasBatem) {
             return user;
         }
 

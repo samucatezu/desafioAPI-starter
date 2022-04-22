@@ -1,10 +1,11 @@
 package com.gft.desafioapistarter.model;
 
 import lombok.Data;
+import org.springframework.http.HttpStatus;
 
-import java.util.InputMismatchException;
 
 import javax.persistence.*;
+import java.util.InputMismatchException;
 
 @Data
 @Entity
@@ -15,7 +16,7 @@ public class Starters {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "nome", nullable = false)
     private String nome;
 
     @Column

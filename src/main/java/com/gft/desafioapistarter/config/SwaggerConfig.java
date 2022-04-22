@@ -20,7 +20,7 @@ import java.util.List;
 public class SwaggerConfig {
 
     @Bean
-    public Docket docket(){
+    public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .useDefaultResponseMessages(false)
                 .select()
@@ -33,7 +33,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo());
     }
 
-    private ApiInfo apiInfo(){
+    private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Desafio GFT API")
                 .description("Api com CRUD de Categoria e Starter, com niveis de acesso, autenticacao, login, cadastros" +
@@ -43,24 +43,24 @@ public class SwaggerConfig {
                 .build();
     }
 
-    private Contact contact(){
+    private Contact contact() {
         return new Contact("Samuel Almeida"
                 , "http://github.com/samucatezu",
                 "slba@gft.com");
     }
 
-    public ApiKey apiKey(){
+    public ApiKey apiKey() {
         return new ApiKey("JWT", "Authorization", "header");
     }
 
-    private SecurityContext securityContext(){
+    private SecurityContext securityContext() {
         return SecurityContext.builder()
                 .securityReferences(defaultAuth())
                 .forPaths(PathSelectors.any())
                 .build();
     }
 
-    private List<SecurityReference> defaultAuth(){
+    private List<SecurityReference> defaultAuth() {
         AuthorizationScope authorizationScope = new AuthorizationScope(
                 "global", "accessEverything");
         AuthorizationScope[] scopes = new AuthorizationScope[1];

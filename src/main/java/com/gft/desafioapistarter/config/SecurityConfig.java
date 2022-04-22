@@ -27,12 +27,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtService jwtService;
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public OncePerRequestFilter jwtFilter(){
+    public OncePerRequestFilter jwtFilter() {
         return new JwtAuthFilter(jwtService, usuarioService);
     }
 
@@ -47,18 +47,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf() .disable()
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/api/starters/**", "/api/categoria/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.POST,"/api/starters", "/api/categoria").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE,"/api/starters/**", "/api/categoria/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/starters/**", "/api/categoria/**", "/api/files").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/api/starters", "/api/categoria", "/api/upload/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/starters/**", "/api/categoria/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/usuarios/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .addFilterBefore( jwtFilter(), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
         ;
     }
 
