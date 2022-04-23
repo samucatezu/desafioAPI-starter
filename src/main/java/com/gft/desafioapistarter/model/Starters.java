@@ -1,6 +1,10 @@
 package com.gft.desafioapistarter.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gft.desafioapistarter.controller.CategoriaController;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.http.HttpStatus;
 
 
@@ -27,6 +31,12 @@ public class Starters {
 
     @Column
     private String Email;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "categoria_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Categoria categoria;
 
     public boolean validarCPF() {
         if(this.cpf == null) return false;
