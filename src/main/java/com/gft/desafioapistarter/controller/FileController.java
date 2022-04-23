@@ -7,12 +7,13 @@ import com.gft.desafioapistarter.message.ResponseFile;
 import com.gft.desafioapistarter.message.ResponseMessage;
 import com.gft.desafioapistarter.model.FileDB;
 import com.gft.desafioapistarter.service.FileStorageService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,12 +22,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Controller
+@Api("CRUD endpoint de Imagens ")
 public class FileController {
 
     @Autowired
     private FileStorageService storageService;
 
     @PostMapping("/upload")
+    @ApiOperation("postar imagens cadastradas")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
         try {
@@ -41,6 +44,7 @@ public class FileController {
     }
 
     @GetMapping("/files")
+    @ApiOperation("Retorna diversas imagens cadastradas")
     public ResponseEntity<List<ResponseFile>> getListFiles() {
         List<ResponseFile> files = storageService.getAllFiles().map(dbFile -> {
             String fileDownloadUri = ServletUriComponentsBuilder
@@ -60,6 +64,7 @@ public class FileController {
     }
 
     @GetMapping("/files/{id}")
+    @ApiOperation("Retorna uma imagem cadastrada pelo id")
     public ResponseEntity<byte[]> getFile(@PathVariable String id) {
         FileDB fileDB = storageService.getFile(id);
 
