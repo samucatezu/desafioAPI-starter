@@ -5,7 +5,7 @@ Desafio feito pelos starters da GFT.
 ## funcionalidades
 
 - Sistema de cadastro, login e autenticacao com senha criptografada
-- Niveis de acessos definidos
+- Hierarquia de acessos definida
 - Upload de imagens
 - Retorno em ASC de starters
 - Envio de e-mail(nao funcionou tao bem)
@@ -28,16 +28,14 @@ Dillinger uses a number of open source projects to work properly:
 
 - Clone-o
 - Abra em uma IDE que suporte Spring Boot
-- Defina o username e a password do seu Mysql
+- Defina o username e a password do seu User Mysql
 - Rode o projeto
-- e digite o endereco do swagger no seu navegador http://localhost:8080/swagger-ui.html#
+- digite o endereco do swagger no seu navegador http://localhost:8080/swagger-ui.html#
 - Crie um usuario(recomendo que defina admin como true)
 - Faca login e receba o token de autenticacao
 - Faca a autenticacao na parte superior direito da seguinte forma: Digite "Bearer" + "{Token gerado}"
 - Teste as rotas dada as suas funcionalidades
 
-## Usuario admin padrao
-```
-Usuário: Admin
-Senha: Gft@1234
-```
+
+> :warning: **Lembre-se de baixar todas as dependencias do maven**: Recomendo o IntelliJ para rodar o projeto
+
