@@ -16,7 +16,7 @@ Desafio feito pelos starters da GFT.
 - CRUD de starters e categorias
 - Documentacao em Swagger funcionando
 
-Validar cpf e envio de e-mail serao corrigidos posteriormente
+> :warning: Validar cpf e envio de e-mail serão corrigidos posteriormente.
 
 ## Techs
 
