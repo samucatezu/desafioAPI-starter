@@ -1,5 +1,8 @@
 # Desafio API GFT
 
+<details>
+    <summary><Font Size = "10"><strong>PT-BR Read.me</strong></Font></summary>
+  <ul>
 Desafio feito pelos starters da GFT.
 
 ## funcionalidades
@@ -17,7 +20,7 @@ Validar cpf e envio de e-mail serao corrigidos posteriormente
 
 ## Techs
 
-Dillinger uses a number of open source projects to work properly:
+Ferramentas utilizadas:
 
 - [Swagger] - Documentacao da API
 - [Spring Boot] - Estrutura em REST
@@ -39,3 +42,48 @@ Dillinger uses a number of open source projects to work properly:
 
 > :warning: **Lembre-se de baixar todas as dependencias do maven**: Recomendo o IntelliJ para rodar o projeto
 
+</details>
+  
+  <details>
+    <summary><Font Size = "10"><strong>EN Read.me</strong></Font></summary>
+  <ul>
+Challenge made by GFT starters.
+
+## Functions
+
+- Registration, login and authentication system with encrypted password
+- Defined access hierarchy
+- Uploading images
+- Return in ASC from starters
+- Email sending (didn't work so well)
+- Validate ID (didn't work so well)
+- CRUD of starters and categories
+- Documentation in Swagger working
+
+Validate ID and email sending will be fixed later
+    
+## Techs
+
+tools used:
+    
+- [Swagger] - API document
+- [Spring Boot] - REST structure
+- [MySql] - Database
+- [Postman e Insomnia] - Endpoint tests
+
+## To run the project:
+
+- Clone the project
+- Open in an IDE that supports Spring Boot
+- Set the username and password of your Mysql User
+- Run the project
+- enter the swagger address in your browser http://localhost:8080/swagger-ui.html#
+- Create a user (I recommend setting admin to true)
+- Log in and receive the authentication token
+- Authenticate at the top right as follows: Type "Bearer" + "{Generated Token}"
+- Test routes given their features
+
+
+> :warning: **Remember to download all maven dependencies**: I recommend IntelliJ to run the project
+
+</details>
